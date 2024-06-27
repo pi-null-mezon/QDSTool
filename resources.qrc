@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/eraser.svg</file>
+    </qresource>
+</RCC>
