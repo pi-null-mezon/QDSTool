@@ -11,7 +11,6 @@ LIBS += -L$${DCMTK_INSTALL_PATH}/lib
 
 LIBS += \
     -ldcmdata \
-    -ldcmfg \
     -ldcmimgle \
     -loflog \
     -lofstd
