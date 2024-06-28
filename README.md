@@ -27,9 +27,9 @@ sudo apt install qt5-default -y
 ## Run
 
 ```bash
-cd QImageMarker && \
+cd QDSTool && \
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD} && \
-./QImageMarker
+./QDSTool
 ```  
 
 ### Windows
