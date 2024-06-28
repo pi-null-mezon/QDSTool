@@ -106,7 +106,6 @@ Source: "{#Opencv_path}\libopencv_imgcodecs{#Opencv_version}.dll"; DestDir: "{ap
 ;Source: "{#Opencv_path}\libopencv_dnn{#Opencv_version}.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; DCMTK
 Source: "{#DCMTK_PATH}\libdcmdata.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#DCMTK_PATH}\libdcmfg.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DCMTK_PATH}\libdcmimgle.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DCMTK_PATH}\liboflog.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DCMTK_PATH}\libofstd.dll"; DestDir: "{app}"; Flags: ignoreversion
