@@ -1,40 +1,27 @@
 win32 {
+    DCMTK_INSTALL_PATH = C:/home/alex/Programming/3rdParties/dcmtk-3.6.6/install
+    INCLUDEPATH += $${DCMTK_INSTALL_PATH}/include
+
+    LIBS += -L$${DCMTK_INSTALL_PATH}/lib
+
+    LIBS += \
+        -ldcmdata \
+        -ldcmfg \
+        -ldcmimgle \
+        -loflog \
+        -lofstd
 
 } else {
-    DCMTK_INSTALL_PATH = /home/alex/Programming/3rdParties/dcmtk/install
+    DCMTK_INSTALL_PATH = /home/alex/Programming/3rdParties/dcmtk-3.6.6/install
 
     INCLUDEPATH += $${DCMTK_INSTALL_PATH}/include
 
     LIBS += -L$${DCMTK_INSTALL_PATH}/lib
 
     LIBS += \
-        #-lcmr \
         -ldcmdata \
-        #-ldcmdsig \
-        #-ldcmect \
         -ldcmfg \
-        #-ldcmimage \
         -ldcmimgle \
-        #-ldcmiod \
-        #-ldcmjpeg \
-        #-ldcmjpls \
-        #-ldcmnet \
-        #-ldcmpmap \
-        #-ldcmpstat \
-        #-ldcmqrdb \
-        #-ldcmrt \
-        #-ldcmseg \
-        #-ldcmsr \
-        #-ldcmtkcharls \
-        #-ldcmtls \
-        #-ldcmtract \
-        #-ldcmwlm \
-        #-ldcmxml \
-        #-li2d \
-        #-lijg12 \
-        #-lijg16 \
-        #-lijg8 \
-        -loficonv \
         -loflog \
         -lofstd
 }

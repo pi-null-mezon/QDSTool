@@ -12,7 +12,7 @@ Install building tools at first. And then, following libraries are needed:
 
 2) install or build [opencv](https://opencv.org/)
 
-3) install or build [dcmtk](https://github.com/DCMTK/dcmtk) with DCMTK_DEFAULT_DICT=builtin
+3) install or build [dcmtk-3.6.6](https://github.com/DCMTK/dcmtk) (with DCMTK_DEFAULT_DICT=builtin)
 
 ## How to install (for end users)
 

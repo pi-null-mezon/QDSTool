@@ -43,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->radius_slider->setFocusPolicy(Qt::NoFocus);
+    ui->intensitySlider->setFocusPolicy(Qt::NoFocus);
+    ui->toolButton->setFocusPolicy(Qt::NoFocus);
     setWindowTitle(QString("%1 v%2").arg(APP_NAME, APP_VERSION));
 
     QDir _dir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation).append("/%1").arg(APP_NAME));
@@ -51,7 +53,9 @@ MainWindow::MainWindow(QWidget *parent)
     settings = new QSettings(_dir.absolutePath().append("/%1.ini").arg(APP_NAME),QSettings::IniFormat);
     ui->radius_slider->setValue(settings->value("Radius",3).toInt());
     ui->widget->setRadius(ui->radius_slider->value());
-
+    ui->intensitySlider->setValue(settings->value("Intensity",128).toInt());
+    ui->widget->setIntensity(ui->intensitySlider->value());
+    ui->toolButton->setDefaultAction(ui->actionEqualizeImage);
     ui->actionEqualizeImage->setChecked(settings->value("EqualizeImage",false).toBool());
 
     connect(ui->widget,&QImageWidget::fileDropped,this,&MainWindow::openDirectory);
@@ -383,72 +387,92 @@ void MainWindow::on_radius_slider_valueChanged(int value)
 void MainWindow::on_actioneraser_triggered()
 {
     ui->widget->setLabel(0);
+    ui->curentlblLabel->setText(ui->actioneraser->text());
 }
 
 
 void MainWindow::on_actionlabel_1_triggered()
 {
-    ui->widget->setLabel(101); // Плечеголовной ствол аорты
+    ui->widget->setLabel(101);
+    ui->curentlblLabel->setText(ui->actionlabel_1->text());
 }
 
 void MainWindow::on_actionlabel_2_triggered()
 {
-    ui->widget->setLabel(102); // Левая общая сонная артерия
+    ui->widget->setLabel(102);
+    ui->curentlblLabel->setText(ui->actionlabel_2->text());
 }
 
 void MainWindow::on_actionlabel_3_triggered()
 {
-    ui->widget->setLabel(103); // Левая подключичная артерия
+    ui->widget->setLabel(103);
+    ui->curentlblLabel->setText(ui->actionlabel_3->text());
 }
 
 void MainWindow::on_actionlabel_4_triggered()
 {
-    ui->widget->setLabel(104); // Нижняя диафрагмальная артерия левая/правая
+    ui->widget->setLabel(104);
+    ui->curentlblLabel->setText(ui->actionlabel_4->text());
 }
 
 void MainWindow::on_actionlabel_5_triggered()
 {
-    ui->widget->setLabel(105); // Нижняя диафрагмальная артерия левая/правая
+    ui->widget->setLabel(105);
+    ui->curentlblLabel->setText(ui->actionlabel_5->text());
 }
 
 void MainWindow::on_actionlabel_6_triggered()
 {
-    ui->widget->setLabel(106); // Плечеголовной ствол аорты
+    ui->widget->setLabel(106);
+    ui->curentlblLabel->setText(ui->actionlabel_6->text());
 }
 
 void MainWindow::on_actionlabel_7_triggered()
 {
-    ui->widget->setLabel(107); // Левая общая сонная артерия
+    ui->widget->setLabel(107);
+    ui->curentlblLabel->setText(ui->actionlabel_7->text());
 }
 
 void MainWindow::on_actionlabel_8_triggered()
 {
-    ui->widget->setLabel(108); // Левая подключичная артерия
+    ui->widget->setLabel(108);
+    ui->curentlblLabel->setText(ui->actionlabel_8->text());
 }
 
 void MainWindow::on_actionlabel_9_triggered()
 {
-    ui->widget->setLabel(109); // Нижняя диафрагмальная артерия левая/правая
+    ui->widget->setLabel(109);
+    ui->curentlblLabel->setText(ui->actionlabel_9->text());
 }
 
 void MainWindow::on_actionlabel_10_triggered()
 {
-    ui->widget->setLabel(110); // Нижняя диафрагмальная артерия левая/правая
+    ui->widget->setLabel(110);
+    ui->curentlblLabel->setText(ui->actionlabel_10->text());
 }
 
 void MainWindow::on_actionlabel_11_triggered()
 {
-    ui->widget->setLabel(111); // Плечеголовной ствол аорты
+    ui->widget->setLabel(111);
+    ui->curentlblLabel->setText(ui->actionlabel_11->text());
 }
 
 
 void MainWindow::on_actionlabel_12_triggered()
 {
-    ui->widget->setLabel(112); // Левая общая сонная артерия
+    ui->widget->setLabel(112);
+    ui->curentlblLabel->setText(ui->actionlabel_12->text());
 }
 
 
 void MainWindow::on_actionlabel_13_triggered()
 {
-    ui->widget->setLabel(113); // Левая подключичная артерия
+    ui->widget->setLabel(113);
+    ui->curentlblLabel->setText(ui->actionlabel_13->text());
+}
+
+void MainWindow::on_intensitySlider_valueChanged(int value)
+{
+    ui->widget->setIntensity(value);
+    settings->setValue("Intensity",value);
 }

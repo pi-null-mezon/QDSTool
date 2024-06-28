@@ -17,7 +17,8 @@ bool isNear(const QPointF &_lp, const QPointF &_rp)
 
 QImageWidget::QImageWidget(QWidget *parent) : QWidget(parent),
     radius(3),
-    label(100),
+    intensity(100),
+    label(0),
     scale(1),    
     allowtranslation(false),
     leftbuttondown(false)
@@ -25,7 +26,7 @@ QImageWidget::QImageWidget(QWidget *parent) : QWidget(parent),
     setAcceptDrops(true);
 }
 
-void prepare_overlay(QImage &rgba, const QImage &gs, const QMap<int,QColor> &colors)
+void prepare_overlay(QImage &rgba, const QImage &gs, const QMap<int,QColor> &colors, uint8_t intensity)
 {
     QColor color;
     for(int y = 0; y < gs.height(); ++y) {
@@ -38,7 +39,7 @@ void prepare_overlay(QImage &rgba, const QImage &gs, const QMap<int,QColor> &col
                 alpha[4*x+1] = color.green();
                 alpha[4*x+2] = color.blue();
             }
-            alpha[4*x+3] = labels[x] != 0 ? 100 : 0;
+            alpha[4*x+3] = labels[x] != 0 ? intensity : 0;
         }
     }
 }
@@ -55,7 +56,7 @@ void QImageWidget::paintEvent(QPaintEvent *_event)
     painter.fillRect(rect(),Qt::Dense6Pattern);
     if(!image.isNull()) {
         painter.drawImage(inscribedrect,image);
-        prepare_overlay(overlay,hotmap,colors);
+        prepare_overlay(overlay,hotmap,colors,intensity);
         painter.drawImage(inscribedrect,overlay);
     } else {
         QFont _font = painter.font();
@@ -173,6 +174,17 @@ void QImageWidget::dragEnterEvent(QDragEnterEvent *_event)
 {
     if(_event->mimeData()->hasText())
         _event->acceptProposedAction();
+}
+
+uint8_t QImageWidget::getIntensity() const
+{
+    return intensity;
+}
+
+void QImageWidget::setIntensity(uint8_t newIntensity)
+{
+    intensity = newIntensity;
+    update();
 }
 
 void QImageWidget::setColors(const QMap<int, QColor> &newColors)

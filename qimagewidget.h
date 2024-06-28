@@ -35,6 +35,10 @@ public:
 
     void setColors(const QMap<int, QColor> &newColors);
 
+    void setIntensity(uint8_t newIntensity);
+
+    uint8_t getIntensity() const;
+
 signals:
     void fileDropped(const QString &filename);
 
@@ -56,6 +60,7 @@ private:
     QImage image, hotmap, overlay;
     QRectF inscribedrect;
     int radius;
+    uint8_t intensity;
     uint8_t label;
     qreal scale;
     QPoint translation;
