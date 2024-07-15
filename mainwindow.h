@@ -87,6 +87,14 @@ private slots:
 
     void on_intensitySlider_valueChanged(int value);
 
+    void on_actionlabel_14_triggered();
+
+    void on_actionlabel_15_triggered();
+
+    void on_actionlabel_16_triggered();
+
+    void on_actionaneurysm_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSettings *settings;

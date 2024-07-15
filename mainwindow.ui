@@ -313,7 +313,7 @@
   </action>
   <action name="actionclearPoints">
    <property name="text">
-    <string>clear all</string>
+    <string>Очистить всё</string>
    </property>
    <property name="toolTip">
     <string>Clear points</string>
@@ -429,7 +429,7 @@
      <normaloff>:/Resources/eraser.svg</normaloff>:/Resources/eraser.svg</iconset>
    </property>
    <property name="text">
-    <string>eraser</string>
+    <string>Стереть</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -573,6 +573,57 @@
    </property>
    <property name="text">
     <string>10. Общая подвздошная артерия</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_14">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1. Дуга аорты</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_15">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2. Нисходящий отдел аорты</string>
+   </property>
+   <property name="toolTip">
+    <string>2. Нисходящий отдел аорты</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_16">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3. Брюшной отдел аорты</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionaneurysm">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Resources/aneurysm.svg</normaloff>:/Resources/aneurysm.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Аневризма</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

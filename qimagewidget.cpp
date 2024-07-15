@@ -176,6 +176,11 @@ void QImageWidget::dragEnterEvent(QDragEnterEvent *_event)
         _event->acceptProposedAction();
 }
 
+uint8_t QImageWidget::getLabel() const
+{
+    return label;
+}
+
 uint8_t QImageWidget::getIntensity() const
 {
     return intensity;

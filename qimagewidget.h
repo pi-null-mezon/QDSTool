@@ -39,6 +39,8 @@ public:
 
     uint8_t getIntensity() const;
 
+    uint8_t getLabel() const;
+
 signals:
     void fileDropped(const QString &filename);
 

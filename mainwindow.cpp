@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings = new QSettings(_dir.absolutePath().append("/%1.ini").arg(APP_NAME),QSettings::IniFormat);
     ui->radius_slider->setValue(settings->value("Radius",3).toInt());
     ui->widget->setRadius(ui->radius_slider->value());
-    ui->intensitySlider->setValue(settings->value("Intensity",128).toInt());
+    ui->intensitySlider->setValue(settings->value("Intensity",100).toInt());
     ui->widget->setIntensity(ui->intensitySlider->value());
     ui->toolButton->setDefaultAction(ui->actionEqualizeImage);
     ui->actionEqualizeImage->setChecked(settings->value("EqualizeImage",false).toBool());
@@ -61,21 +61,19 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget,&QImageWidget::fileDropped,this,&MainWindow::openDirectory);
 
     QMap<int, QColor> colors;
-    colors[101] = Qt::green;
-    colors[102] = Qt::red;
-    colors[103] = Qt::blue;
-    colors[104] = Qt::yellow;
-    colors[105] = Qt::cyan;
-    colors[106] = Qt::magenta;
-    colors[107] = QColor(200,25,100);
-    colors[108] = QColor(100,100,220);
-    colors[109] = QColor(0,100,200);
-    colors[110] = QColor(255,200,50);
-    colors[111] = QColor(50,200,255);
-    colors[112] = QColor(200,50,100);
-    colors[113] = QColor(30,200,150);
+    for(int i = 101; i <= 116; ++i) { // normal vessels
+        int c = i - 100;
+        colors[i] = QColor(c*2,
+                           c % 2 ? 100 + ((c * 23) % 155) : 255 - ((c * 23) % 155),
+                           c % 2 ? 255 - ((c * 23) % 155) : 100 + ((c * 23) % 155));
+    } for(int i = 201; i <= 216; ++i) {// aneurysm
+        int c = i - 200;
+        colors[i] = QColor(255,
+                           c % 2 ? 0 + ((c * 23) % 155) : 100 - ((c * 3) % 100),
+                           c % 2 ? 100 - ((c * 3) % 100) : 0 + ((c * 23) % 155));
+    }
     ui->widget->setColors(colors);
-    ui->actionlabel_1->trigger();
+    ui->actionlabel_14->trigger();
     openDirectory(settings->value("Directory",QString()).toString());
 }
 
@@ -89,6 +87,12 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
     menu.addAction(ui->actioneraser);
+    //menu.addSeparator();
+    menu.addAction(ui->actionaneurysm);
+    menu.addSeparator();
+    menu.addAction(ui->actionlabel_14);
+    menu.addAction(ui->actionlabel_15);
+    menu.addAction(ui->actionlabel_16);
     menu.addSeparator();
     menu.addAction(ui->actionlabel_1);
     menu.addAction(ui->actionlabel_2);
@@ -119,6 +123,9 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     ag.addAction(ui->actionlabel_11);
     ag.addAction(ui->actionlabel_12);
     ag.addAction(ui->actionlabel_13);
+    ag.addAction(ui->actionlabel_14);
+    ag.addAction(ui->actionlabel_15);
+    ag.addAction(ui->actionlabel_16);
     menu.addSeparator();
     menu.addAction(ui->actionclearPoints);
     /*menu.addSeparator();
@@ -336,6 +343,7 @@ void MainWindow::commit_markup()
 
 void MainWindow::on_actionEqualizeImage_triggered(bool checked)
 {
+    commit_markup();
     settings->setValue("EqualizeImage",checked);
     open_file_with_index(cpos);
 }
@@ -383,96 +391,126 @@ void MainWindow::on_radius_slider_valueChanged(int value)
     settings->setValue("Radius",value);
 }
 
-
 void MainWindow::on_actioneraser_triggered()
 {
     ui->widget->setLabel(0);
     ui->curentlblLabel->setText(ui->actioneraser->text());
 }
 
-
 void MainWindow::on_actionlabel_1_triggered()
 {
-    ui->widget->setLabel(101);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 201 : 101);
     ui->curentlblLabel->setText(ui->actionlabel_1->text());
 }
 
 void MainWindow::on_actionlabel_2_triggered()
 {
-    ui->widget->setLabel(102);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 202 : 102);
     ui->curentlblLabel->setText(ui->actionlabel_2->text());
 }
 
 void MainWindow::on_actionlabel_3_triggered()
 {
-    ui->widget->setLabel(103);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 203 : 103);
     ui->curentlblLabel->setText(ui->actionlabel_3->text());
 }
 
 void MainWindow::on_actionlabel_4_triggered()
 {
-    ui->widget->setLabel(104);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 204 : 104);
     ui->curentlblLabel->setText(ui->actionlabel_4->text());
 }
 
 void MainWindow::on_actionlabel_5_triggered()
 {
-    ui->widget->setLabel(105);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 205 : 105);
     ui->curentlblLabel->setText(ui->actionlabel_5->text());
 }
 
 void MainWindow::on_actionlabel_6_triggered()
 {
-    ui->widget->setLabel(106);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 206 : 106);
     ui->curentlblLabel->setText(ui->actionlabel_6->text());
 }
 
 void MainWindow::on_actionlabel_7_triggered()
 {
-    ui->widget->setLabel(107);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 207 : 107);
     ui->curentlblLabel->setText(ui->actionlabel_7->text());
 }
 
 void MainWindow::on_actionlabel_8_triggered()
 {
-    ui->widget->setLabel(108);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 208 : 108);
     ui->curentlblLabel->setText(ui->actionlabel_8->text());
 }
 
 void MainWindow::on_actionlabel_9_triggered()
 {
-    ui->widget->setLabel(109);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 209 : 109);
     ui->curentlblLabel->setText(ui->actionlabel_9->text());
 }
 
 void MainWindow::on_actionlabel_10_triggered()
 {
-    ui->widget->setLabel(110);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 210 : 110);
     ui->curentlblLabel->setText(ui->actionlabel_10->text());
 }
 
 void MainWindow::on_actionlabel_11_triggered()
 {
-    ui->widget->setLabel(111);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 211 : 111);
     ui->curentlblLabel->setText(ui->actionlabel_11->text());
 }
 
-
 void MainWindow::on_actionlabel_12_triggered()
 {
-    ui->widget->setLabel(112);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 212 : 112);
     ui->curentlblLabel->setText(ui->actionlabel_12->text());
 }
 
-
 void MainWindow::on_actionlabel_13_triggered()
 {
-    ui->widget->setLabel(113);
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 213 : 113);
     ui->curentlblLabel->setText(ui->actionlabel_13->text());
+}
+
+void MainWindow::on_actionlabel_14_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 214 : 114);
+    ui->curentlblLabel->setText(ui->actionlabel_14->text());
+}
+
+void MainWindow::on_actionlabel_15_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 215 : 115);
+    ui->curentlblLabel->setText(ui->actionlabel_15->text());
+}
+
+void MainWindow::on_actionlabel_16_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 216 : 116);
+    ui->curentlblLabel->setText(ui->actionlabel_16->text());
 }
 
 void MainWindow::on_intensitySlider_valueChanged(int value)
 {
     ui->widget->setIntensity(value);
     settings->setValue("Intensity",value);
+}
+
+void MainWindow::on_actionaneurysm_triggered()
+{
+    const uint8_t label = ui->widget->getLabel();
+    QPalette palette = ui->curentlblLabel->palette();
+    if(label > 0) {
+        if(ui->actionaneurysm->isChecked()) {
+            ui->widget->setLabel(label + 100);
+            palette.setBrush(QPalette::WindowText, Qt::red);
+        } else {
+            ui->widget->setLabel(label - 100);
+            palette.setBrush(QPalette::WindowText, Qt::white);
+        }
+        ui->curentlblLabel->setPalette(palette);
+    }
 }

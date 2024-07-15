@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Resources/eraser.svg</file>
+        <file>Resources/aneurysm.svg</file>
     </qresource>
 </RCC>
