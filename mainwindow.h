@@ -95,6 +95,12 @@ private slots:
 
     void on_actionaneurysm_triggered();
 
+    void on_actionlabel_17_triggered();
+
+    void on_actionlabel_18_triggered();
+
+    void on_actionlabel_19_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSettings *settings;

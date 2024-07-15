@@ -61,16 +61,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget,&QImageWidget::fileDropped,this,&MainWindow::openDirectory);
 
     QMap<int, QColor> colors;
-    for(int i = 101; i <= 116; ++i) { // normal vessels
+    for(int i = 101; i <= 150; ++i) { // normal vessels
         int c = i - 100;
-        colors[i] = QColor(c*2,
-                           c % 2 ? 100 + ((c * 23) % 155) : 255 - ((c * 23) % 155),
-                           c % 2 ? 255 - ((c * 23) % 155) : 100 + ((c * 23) % 155));
-    } for(int i = 201; i <= 216; ++i) {// aneurysm
+        colors[i] = QColor(c % 2 ? 5*c : 3*c,
+                           c % 2 ? 100 + ((c * 17) % 155) : 255 - ((c * 17) % 155),
+                           c % 2 ? 255 - ((c * 17) % 155) : 100 + ((c * 17) % 155));
+    } for(int i = 201; i <= 250; ++i) { // aneurysm
         int c = i - 200;
         colors[i] = QColor(255,
-                           c % 2 ? 0 + ((c * 23) % 155) : 100 - ((c * 3) % 100),
-                           c % 2 ? 100 - ((c * 3) % 100) : 0 + ((c * 23) % 155));
+                           c % 2 ? 0 + ((c * 17) % 155) : 100 - ((c * 17) % 100),
+                           c % 2 ? 100 - ((c * 17) % 100) : 0 + ((c * 17) % 155));
     }
     ui->widget->setColors(colors);
     ui->actionlabel_14->trigger();
@@ -99,21 +99,25 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(ui->actionlabel_3);
     menu.addSeparator();
     menu.addAction(ui->actionlabel_4);
+    menu.addAction(ui->actionlabel_17);
     menu.addAction(ui->actionlabel_5);
     menu.addAction(ui->actionlabel_6);
     menu.addAction(ui->actionlabel_7);
-    menu.addAction(ui->actionlabel_8);
+    menu.addAction(ui->actionlabel_8);   
     menu.addAction(ui->actionlabel_9);
     menu.addAction(ui->actionlabel_10);
     menu.addAction(ui->actionlabel_11);
+    menu.addAction(ui->actionlabel_19);
     menu.addAction(ui->actionlabel_12);
     menu.addAction(ui->actionlabel_13);
+    menu.addAction(ui->actionlabel_18);
     QActionGroup ag(&menu);
     ag.addAction(ui->actioneraser);
     ag.addAction(ui->actionlabel_1);
     ag.addAction(ui->actionlabel_2);
     ag.addAction(ui->actionlabel_3);
     ag.addAction(ui->actionlabel_4);
+    ag.addAction(ui->actionlabel_17);
     ag.addAction(ui->actionlabel_5);
     ag.addAction(ui->actionlabel_6);
     ag.addAction(ui->actionlabel_7);
@@ -121,8 +125,10 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     ag.addAction(ui->actionlabel_9);
     ag.addAction(ui->actionlabel_10);
     ag.addAction(ui->actionlabel_11);
+    ag.addAction(ui->actionlabel_19);
     ag.addAction(ui->actionlabel_12);
     ag.addAction(ui->actionlabel_13);
+    ag.addAction(ui->actionlabel_18);
     ag.addAction(ui->actionlabel_14);
     ag.addAction(ui->actionlabel_15);
     ag.addAction(ui->actionlabel_16);
@@ -491,6 +497,24 @@ void MainWindow::on_actionlabel_16_triggered()
 {
     ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 216 : 116);
     ui->curentlblLabel->setText(ui->actionlabel_16->text());
+}
+
+void MainWindow::on_actionlabel_17_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 217 : 117);
+    ui->curentlblLabel->setText(ui->actionlabel_17->text());
+}
+
+void MainWindow::on_actionlabel_18_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 218 : 118);
+    ui->curentlblLabel->setText(ui->actionlabel_18->text());
+}
+
+void MainWindow::on_actionlabel_19_triggered()
+{
+    ui->widget->setLabel(ui->actionaneurysm->isChecked() ? 219 : 119);
+    ui->curentlblLabel->setText(ui->actionlabel_19->text());
 }
 
 void MainWindow::on_intensitySlider_valueChanged(int value)

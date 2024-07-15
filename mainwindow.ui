@@ -473,7 +473,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>1. Нижняя диафрагмальная артерия левая/правая</string>
+    <string>1.1. Нижняя диафрагмальная артерия левая</string>
+   </property>
+   <property name="toolTip">
+    <string>1. Нижняя диафрагмальная артерия левая</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -550,7 +553,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>8. Почечная артерия левая/правая</string>
+    <string>8.1. Почечная артерия левая</string>
+   </property>
+   <property name="toolTip">
+    <string>8. Почечная артерия левая</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -572,7 +578,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>10. Общая подвздошная артерия</string>
+    <string>10.1. Общая подвздошная артерия левая</string>
+   </property>
+   <property name="toolTip">
+    <string>10.1. Общая подвздошная артерия левая</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -624,6 +633,39 @@
    </property>
    <property name="text">
     <string>Аневризма</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_17">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1.2. Нижняя диафрагмальная артерия правая</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_18">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>10.2. Общая подвздошная артерия правая</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionlabel_19">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>8.2 Почечная артерия правая</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
