@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QDSTool"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "pi-mezon.ru"
 #define MyAppExeName "QDSTool.exe"
 #define MyAppURL "https://github.com/pi-null-mezon/QDSTool.git"
